@@ -10,7 +10,7 @@ pipeline {
   stage("Version"){
    steps{
     script{
-         va_r  = "${env.BRANCH_NAME}-${env.BUILD_NUMBER}"
+         va_r  = "${env.GIT_BRANCH}-${env.BUILD_NUMBER}"
          echo "${va_r}"
     }
    }
