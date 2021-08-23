@@ -6,14 +6,14 @@
   <name>jenkinstask</name>
   <build>
       <plugins>
-		 <plugin>
-			<groupId>org.jacoco</groupId>
-			<artifactId>jacoco-maven-plugin</artifactId>
-			<version>0.8.2</version>
-			<executions>
-			   <execution>
+	<plugin>
+		<groupId>org.jacoco</groupId>
+		<artifactId>jacoco-maven-plugin</artifactId>
+		<version>0.8.2</version>
+		<executions>
+			  <execution>
 			     <goals>
-					<goal>prepare-agent</goal>
+				  <goal>prepare-agent</goal>
 				 </goals>
 			   </execution>
 			   <execution>
@@ -25,5 +25,5 @@
 			   </execution>
 			</executions>
 		 </plugin>
-         <plugin>
+         </plugins>
 </project>
