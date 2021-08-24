@@ -27,11 +27,9 @@ pipeline {
   
   stage("Local Archive"){
    steps {
-    archive '/var/lib/jenkins/jobs/Declarativetask*.war'
-      
+       archive 'target/*.war'
+       }
     }
-    
-   }
   stage('Deploy to nexus') {
     steps {
 	    nexusArtifactUploader artifacts: 
