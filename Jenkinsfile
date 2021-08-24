@@ -25,10 +25,7 @@ pipeline {
    }
   stage('Publish test and Code Coverage') {
     steps {
-      junit allowEmptyResults: true, skipPublishingChecks: true,
-          testResults: 'target/surefire-reports/*.xml'
-          publishCoverage adapters: [jacocoAdapter('target/site/jacoco/jacoco*.xml')],
-          sourceFileResolver: sourceFiles('NEVER_STORE')
+            junit 'target/surefire-reports/*.xml'
       }
     }
   
