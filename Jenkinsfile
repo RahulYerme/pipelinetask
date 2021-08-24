@@ -27,7 +27,7 @@ pipeline {
   
   stage("Local Archive"){
    steps {
-       archive 'target/*.jar'
+       archiveArtifacts 'target/* .war'
        }
     }
   stage('Deploy to nexus') {
