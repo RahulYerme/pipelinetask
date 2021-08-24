@@ -23,11 +23,7 @@ pipeline {
         }
       }
    }
-  stage('Publish test and Code Coverage') {
-    steps {
-            junit 'target/surefire-reports/*.xml'
-      }
-    }
+ 
   
   stage("Local Archive"){
    steps {
@@ -38,9 +34,20 @@ pipeline {
    }
   stage('Deploy to nexus') {
     steps {
-       script {
-          sh "mvn -s settings.xml -Drevision=$va_r deploy"
-        }
+	    nexusArtifactUploader artifacts: 
+		    [
+		    [artifactId: 'jenkinstask', 
+		     classifier: '', 
+		     file: 'target/jenkinstask.war', 
+		     type: 'war']
+	            ], 
+		    credentialsId: '45d4a7f7-1af5-48da-9bef-786b670e3ae4', 
+		    groupId: 'com.jenkinstask', nexusUrl: '92.168.43.134', 
+		    nexusVersion: 'nexus3', 
+		    protocol: 'http', 
+		    repository: 'simpleapp', 
+		    version: '0.0.1-SNAPSHOT'
+       
       }
     }
 	 
