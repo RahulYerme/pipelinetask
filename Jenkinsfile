@@ -43,7 +43,7 @@ pipeline {
 		    nexusUrl: '192.168.43.134:8081', 
 		    nexusVersion: 'nexus3',
 		    protocol: 'http', 
-		    repository: 'simpleapp', 
+		    repository: 'demorepo', 
 		    version: '1.0.1-SNAPSHOT'
        
       }
