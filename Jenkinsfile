@@ -1,7 +1,11 @@
 def va_r
 def dockerimg
 pipeline {
-    agent any
+	environment {
+        registry = "rahulyerme1234/jenkinspipeline"
+        registryCredential = ‘dockerhub’
+        }
+   agent any
     tools{
      maven 'maven 3.6'
     }
@@ -48,7 +52,14 @@ pipeline {
        
       }
     }
-	 
+  stage('Building docker image') {
+      steps{
+        script {
+		
+             docker.build registry + ":$BUILD_NUMBER"
+        }
+      }
+    } 
  }
 
 }
