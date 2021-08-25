@@ -36,7 +36,7 @@ pipeline {
 		    [
 			    [artifactId: 'jenkinstask', 
 			     classifier: '', 
-			     file: 'target/jenkinstask-0.0.1-SNAPSHOT.jar', 
+			     file: 'target/jenkinstask-1.0.1-SNAPSHOT.jar', 
 			     type: 'jar']], 
 		    credentialsId: 'de5e57d0-3c8c-4e34-a781-3671dadd6b15', 
 		    groupId: 'com.jenkinstask', 
@@ -44,7 +44,7 @@ pipeline {
 		    nexusVersion: 'nexus3',
 		    protocol: 'http', 
 		    repository: 'simpleapp', 
-		    version: '0.0.1-SNAPSHOT'
+		    version: '1.0.1-SNAPSHOT'
        
       }
     }
