@@ -50,12 +50,5 @@ pipeline {
     }
 	 
  }
-post {
-    success {
-        office365ConnectorSend color: '#00cc00', message: "Success  ${JOB_NAME} build_number:${BUILD_NUMBER}, branch:${env.GIT_BRANCH} url:(<${BUILD_URL}>)"
-    failure {
-    office365ConnectorSend color: '#fc2c03', message: "Failed  ${JOB_NAME} build_number:${BUILD_NUMBER}, branch:${env.GIT_BRANCH} url:(<${BUILD_URL}>)"
-    }
-  }
-}
+
 }
