@@ -36,7 +36,7 @@ pipeline {
 		    [
 		    [artifactId: 'jenkinstask', 
 		     classifier: '', 
-		     file: 'target/jenkinstask/0.0.1-SNAPSHOT.jar', 
+		     file: 'target/jenkinstask-0.0.1-SNAPSHOT.jar', 
 		     type: 'war']
 	            ], 
 		    credentialsId: '45d4a7f7-1af5-48da-9bef-786b670e3ae4', 
