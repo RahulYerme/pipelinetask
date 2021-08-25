@@ -40,10 +40,10 @@ pipeline {
 			     type: 'jar']], 
 		    credentialsId: 'de5e57d0-3c8c-4e34-a781-3671dadd6b15', 
 		    groupId: 'com.jenkinstask', 
-		    nexusUrl: '192.168.43.134', 
+		    nexusUrl: '192.168.43.134:8081', 
 		    nexusVersion: 'nexus3',
 		    protocol: 'http', 
-		    repository: 'http://192.168.43.134:8081/repository/simpleapp/', 
+		    repository: 'simpleapp', 
 		    version: '0.0.1-SNAPSHOT'
        
       }
