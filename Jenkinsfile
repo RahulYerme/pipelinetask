@@ -3,7 +3,7 @@ def dockerimg
 pipeline {
 	environment {
         registry = "rahulyerme1234/jenkinspipeline"
-        registryCredential = ‘dockerhub’
+        registryCredential = 'dockerhub'
         }
    agent any
     tools{
