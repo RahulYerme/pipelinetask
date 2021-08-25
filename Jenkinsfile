@@ -32,18 +32,18 @@ pipeline {
     }
   stage('Deploy to nexus') {
     steps {
-	    nexusArtifactUploader artifacts: 
+	    nexusArtifactUploader artifacts:
 		    [
-		    [artifactId: 'jenkinstask', 
-		     classifier: '', 
-		     file: 'target/jenkinstask-0.0.1-SNAPSHOT.jar', 
-		     type: 'war']
-	            ], 
-		    credentialsId: '45d4a7f7-1af5-48da-9bef-786b670e3ae4', 
-		    groupId: 'com.jenkinstask', nexusUrl: '92.168.43.134', 
-		    nexusVersion: 'nexus3', 
+			    [artifactId: 'jenkinstask', 
+			     classifier: '', 
+			     file: 'target/jenkinstask-0.0.1-SNAPSHOT.jar', 
+			     type: 'jar']], 
+		    credentialsId: 'de5e57d0-3c8c-4e34-a781-3671dadd6b15', 
+		    groupId: 'com.jenkinstask', 
+		    nexusUrl: '192.168.43.134', 
+		    nexusVersion: 'nexus3',
 		    protocol: 'http', 
-		    repository: 'simpleapp', 
+		    repository: 'http://192.168.43.134:8081/repository/simpleapp/', 
 		    version: '0.0.1-SNAPSHOT'
        
       }
@@ -52,9 +52,9 @@ pipeline {
  }
 post {
     success {
-       office365ConnectorSend color: '#00cc00', message: "Success  ${JOB_NAME} build_number:${BUILD_NUMBER}, branch:${BRANCH_NAME} url:(<${BUILD_URL}>)", status: 'SUCCESS', webhookUrl: "${TEAMS_WEBHOOK}"
+       office365ConnectorSend color: '#00cc00', message: "Success  ${JOB_NAME} build_number:${BUILD_NUMBER}, branch:${env.GIT_BRANCH} url:(<${BUILD_URL}>)"
     failure {
-     office365ConnectorSend color: '#fc2c03', message: "Failed  ${JOB_NAME} build_number:${BUILD_NUMBER}, branch:${BRANCH_NAME} url:(<${BUILD_URL}>)", status: 'FAILED', webhookUrl:"${TEAMS_WEBHOOK}"
+     office365ConnectorSend color: '#fc2c03', message: "Failed  ${JOB_NAME} build_number:${BUILD_NUMBER}, branch:${env.GIT_BRANCH} url:(<${BUILD_URL}>)"
     }
   }
 }
