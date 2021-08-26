@@ -1,7 +1,11 @@
 def va_r
 def dockerimg
 pipeline {
-    agent any
+	environment {
+        registry = "rahulyerme1234/jenkinspipeline"
+        registryCredential = 'dockerhub'
+        }
+   agent any
     tools{
      maven 'maven 3.6'
     }
@@ -23,29 +27,39 @@ pipeline {
         }
       }
    }
-  stage('Publish test and Code Coverage') {
-    steps {
-      junit allowEmptyResults: true, skipPublishingChecks: true,
-          testResults: 'target/surefire-reports/*.xml'
-          publishCoverage adapters: [jacocoAdapter('target/site/jacoco/jacoco*.xml')],
-          sourceFileResolver: sourceFiles('NEVER_STORE')
-      }
-    }
+ 
   
   stage("Local Archive"){
    steps {
-    archive '/var/lib/jenkins/jobs/Declarativetask*.war'
-      
+       archiveArtifacts artifacts: 'target/*.jar, target/*.war'
+       }
     }
-    
-   }
   stage('Deploy to nexus') {
     steps {
-       script {
-          sh "mvn -s settings.xml -Drevision=$va_r deploy"
-        }
+	    nexusArtifactUploader artifacts:
+		    [
+			    [artifactId: 'jenkinstask', 
+			     classifier: '', 
+			     file: 'target/jenkinstask-1.0.1-SNAPSHOT.jar', 
+			     type: 'jar']], 
+		    credentialsId: 'de5e57d0-3c8c-4e34-a781-3671dadd6b15', 
+		    groupId: 'com.jenkinstask', 
+		    nexusUrl: '192.168.43.134:8081', 
+		    nexusVersion: 'nexus3',
+		    protocol: 'http', 
+		    repository: 'demorepo', 
+		    version: '1.0.1-SNAPSHOT'
+       
       }
     }
-	 
+  stage('Building docker image') {
+      steps{
+        script {
+		
+             docker.build registry + ":$BUILD_NUMBER"
+        }
+      }
+    } 
  }
+
 }
