@@ -60,6 +60,19 @@ pipeline {
         }
       }
     } 
+  stage('Deploy docker Image') {
+      steps{
+        script {
+          docker.withRegistry( '', registryCredential ) 
+	    {
+		  
+	    dockerimg.push("${env.BUILD_NUMBER}")
+		  
+            dockerimg.push("latest")
+          }
+        }
+      }
+    }
  }
 
 }
