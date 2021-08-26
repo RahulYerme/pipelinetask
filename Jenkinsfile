@@ -56,7 +56,7 @@ pipeline {
       steps{
         script {
 		
-             docker.build registry + ":$BUILD_NUMBER"
+            dockerimg = docker.build registry + ":$BUILD_NUMBER"
         }
       }
     } 
