@@ -73,7 +73,7 @@ pipeline {
 	 
          wget -qO clair-scanner https://github.com/arminc/clair-scanner/releases/download/v8/clair-scanner_linux_amd64 && chmod +x clair-scanner
 	 
-         ./clair-scanner --ip="$DOCKER_GATEWAY" --threshold="High" rahulyerme1234/jenkinspipeline:latest || exit 0
+         ./clair-scanner --ip="$DOCKER_GATEWAY" --threshold="High" dockerimg || exit 0
        '''
     }
    }
