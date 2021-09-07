@@ -73,7 +73,7 @@ pipeline {
 	 
          wget -qO clair-scanner https://github.com/arminc/clair-scanner/releases/download/v8/clair-scanner_linux_amd64 && chmod +x clair-scanner
 	 
-         ./clair-scanner --ip="$DOCKER_GATEWAY" --threshold="Unknown" rahulyerme1234/jenkinspipeline:latest || exit 0
+         ./clair-scanner --ip="$DOCKER_GATEWAY" --CVE severity threshold="High" rahulyerme1234/jenkinspipeline:latest || exit 0
        '''
     }
    }
@@ -97,7 +97,7 @@ pipeline {
       office365ConnectorSend color: '#00cc00', message: "Success  ${env.JOB_NAME} build_number:${env.BUILD_NUMBER}, branch:${env.GIT_BRANCH} url:(<${env.BUILD_URL}>)", status: 'SUCCESS', webhookUrl: "${env.TEAMS_WEBHOOK}"
     }
     failure {
-      office365ConnectorSend color: '#fc2c03', message: "Failed  ${env.JOB_NAME} build_number:${env.BUILD_NUMBER}, branch:${env.GIT_BRANCH} url:(<${env.BUILD_URL}>)", status: 'FAILED', webhookUrl:"${env.TEAMS_WEBHOOK}"
+      office365ConnectorSend color: '#fc2c03', message: "Failed  ${env.JOB_NAME} build_number:${env.BUILD_NUMBER}, branch:${env.GIT_BRANCH} url:(<${env.BUILD_URL}>)", status: 'FAILED', webhookUrl:"${TEAMS_WEBHOOK}"
     }
   }
 }
