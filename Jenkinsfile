@@ -44,7 +44,7 @@ pipeline {
 			     type: 'jar']], 
 		    credentialsId: 'newnexus', 
 		    groupId: 'com.jenkinstask', 
-		    nexusUrl: '192.168.43.134:8081', 
+		    nexusUrl: '192.168.33.10:8081', 
 		    nexusVersion: 'nexus3',
 		    protocol: 'http', 
 		    repository: 'demorepo', 
