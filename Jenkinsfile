@@ -2,7 +2,7 @@ def va_r
 def dockerimg
 pipeline {
 	environment {
-        registry = "rahulyerme1234/jenkinspipeline"
+        registry = "rahulyerme1234/cicdpipelinetask"
         registryCredential = 'dockerhub'
         }
    agent any
