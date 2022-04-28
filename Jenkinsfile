@@ -10,6 +10,7 @@ pipeline {
      maven 'apache-maven-3.6.3'
     }
    
+   
  stages{
   stage("Version"){
    steps{
@@ -52,11 +53,16 @@ pipeline {
        
       }
     }*/
-  stage('Building docker image') {
+  stage('Downstream Job') {
       steps{
         script {
+		build job: 'DeployJob',
+		parameters: [
+			[$class:'StringParameterValue:',name:'FROM_build']
+		]
 		
-            dockerimg = docker.build registry + ":$BUILD_NUMBER"
+		
+            
         }
       }
     } 
@@ -78,6 +84,7 @@ pipeline {
     }
    }
   }*/	  
+	 
   stage('Deploy docker Image') {
       steps{
         script {
