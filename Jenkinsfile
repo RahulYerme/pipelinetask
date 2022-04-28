@@ -23,13 +23,13 @@ pipeline {
       steps {
         script {
 	
-	         sh "mvn -s settings.xml -Drevision=$va_r clean package"	 
+	         sh "mvn clean package"	 
         }
       }
    }
  
   
-  stage("Local Archive"){
+  /*stage("Local Archive"){
    steps {
        archiveArtifacts artifacts: 'target/*.jar, target/*.war'
        }
@@ -51,7 +51,7 @@ pipeline {
 		    version: '1.0.1-SNAPSHOT'
        
       }
-    }
+    }*/
   stage('Building docker image') {
       steps{
         script {
@@ -60,7 +60,7 @@ pipeline {
         }
       }
     } 
-  stage("docker_scan"){
+  /*stage("docker_scan"){
    steps{
         script {	  
         sh '''
@@ -77,7 +77,7 @@ pipeline {
        '''
     }
    }
-  }	  
+  }*/	  
   stage('Deploy docker Image') {
       steps{
         script {
@@ -92,12 +92,12 @@ pipeline {
       }
     }
  }
- post {
+ /*post {
     success {
       office365ConnectorSend color: '#00cc00', message: "Success  ${env.JOB_NAME} build_number:${env.BUILD_NUMBER}, branch:${env.GIT_BRANCH} url:(<${env.BUILD_URL}>)", status: 'SUCCESS', webhookUrl: "${env.TEAMS_WEBHOOK}"
     }
     failure {
       office365ConnectorSend color: '#fc2c03', message: "Failed  ${env.JOB_NAME} build_number:${env.BUILD_NUMBER}, branch:${env.GIT_BRANCH} url:(<${env.BUILD_URL}>)", status: 'FAILED', webhookUrl:"${env.TEAMS_WEBHOOK}"
-    }
+    }*/
   }
 }
