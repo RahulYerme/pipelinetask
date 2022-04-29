@@ -20,7 +20,7 @@ pipeline {
     }
    }
   }
-  stage('build ') {
+  stage('BUILD') {
       steps {
         script {
 	
@@ -58,7 +58,7 @@ pipeline {
         script {
 		build job: 'DeployJob',
 		parameters: [
-			[$class:'StringParameterValue:',name:'FROM_build']
+			 [$class: 'StringParameterValue', name: 'FROM_BUILD', value: "${BUILD_NUMBER}"],
 		]
 		
 		
